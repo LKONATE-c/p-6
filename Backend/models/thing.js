@@ -4,6 +4,7 @@ const thingSchema = mongoose.Schema({
   name: { type: String, required: true },
   manufacturer: { type: String, required: true },
   description: { type: String, required: true },
+  mainPepper : { type: String, required: true },
   imageUrl: { type: String, required: true },
   heat: { type: Number, required: true },
   like:  { type: Number, required: true },
@@ -13,4 +14,4 @@ const thingSchema = mongoose.Schema({
   
 });
 
-module.exports = mongoose.model('Thing', thingSchema)
+module.exports = mongoose.model('Thing', thingSchema);
