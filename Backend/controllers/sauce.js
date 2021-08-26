@@ -21,6 +21,7 @@ exports.getOneSauce = (req, res, next) => {
 exports.createSauce =  (req, res, next) =>{
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject._id;
+    const userId = req.body.userId;
     const sauce = new Sauce({
       ...sauceObject,
       imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
@@ -32,6 +33,7 @@ exports.createSauce =  (req, res, next) =>{
 
   //Modifier une sauce//
   exports.modifySauce = (req, res, next) => {
+    const userId = req.body.userId;
     const sauceObject = req.file ?
       {
         ...JSON.parse(req.body.sauce),
