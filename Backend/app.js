@@ -3,7 +3,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 const helmet = require('helmet');
+
+//module npm qui charge les variables d'environement
 require('dotenv').config();
+
+//Variable de stockage des routes
 
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
@@ -16,7 +20,10 @@ mongoose.connect(process.env.MONGODB_PATH,
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
+  // Appel express
   const app = express();
+
+  //methode securité helmet
   app.use(helmet());
 
   //CONFIG DU CORS
