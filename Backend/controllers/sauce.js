@@ -46,6 +46,35 @@ exports.createSauce =  (req, res, next) =>{
 
   //supprimer une sauce//
   exports.deleteSauce = (req, res, next) => {
+    exports.deleteSauce = (req, res, next) => {
+      Sauce.findOne({ _id: req.params.id }).then(
+        (sauce) => {
+          if (!sauce) {
+            res.status(404).json({
+              error: new Error(' Sauce non trouvé!')
+            });
+          }
+          if (sauce.userId !== req.auth.userId) {
+            res.status(400).json({
+              error: new Error('requet non authorisé!')
+            });
+          }
+          Sauce.deleteOne({ _id: req.params.id }).then(
+            () => {
+              res.status(200).json({
+                message: 'Supprimé!'
+              });
+            }
+          ).catch(
+            (error) => {
+              res.status(400).json({
+                error: error
+              });
+            }
+          );
+        }
+      )
+    };
     Sauce.findOne({ _id: req.params.id })
       .then(sauce => {
         const filename = sauce.imageUrl.split('/images/')[1];

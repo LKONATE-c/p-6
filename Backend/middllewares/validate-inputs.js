@@ -21,10 +21,10 @@ exports.user = (req, res, next) => {
  */
 const sauceSchema = Joi.object({
     userId: Joi.string().trim().length(24).required(),
-    name: Joi.string().trim().min(1).required(),
-    manufacturer: Joi.string().trim().min(1).required(),
-    description: Joi.string().trim().min(1).required(),
-    mainPepper: Joi.string().trim().min(1).required(),
+    name: Joi.string().trim().min(3).required(),
+    manufacturer: Joi.string().trim().min(3).required(),
+    description: Joi.string().trim().min(3).required(),
+    mainPepper: Joi.string().trim().min(3).required(),
     heat: Joi.number().integer().min(1).max(10).required()
 })
 exports.sauce = (req, res, next) => {
